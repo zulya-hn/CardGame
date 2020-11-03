@@ -29,7 +29,8 @@
              class="flip-card-inner"
              @click="onClickCard(index, item)"
         >
-          <div class="flip-card-front">
+          <div class="flip-card-front"
+               :style="flipCardFront">
           </div>
           <div class="flip-card-back">
           </div>
@@ -53,7 +54,11 @@
                 openPairsCount: 0,
                 cardsFrozen: false,
                 timerAlreadyStart: false,
-                timer: 0
+                timer: 0,
+                flipCardFront: {
+                    background: 'url(img/reverse.jpg) 0 -6px no-repeat',
+                    backgroundSize: 'cover'
+                }
             };
         },
         created() {
@@ -145,6 +150,7 @@
 
 
 <style scoped>
+  
   .bg {
     position: fixed;
     top: 0;
@@ -201,7 +207,6 @@
   }
   
   .open-card {
-     /*z-index: 3;*/
      pointer-events: none;
      transform: rotateY(180deg);
    }
@@ -229,7 +234,6 @@
   
   .flip-card-back {
     padding-top: 10px;
-    /*z-index: 2;*/
     background-size: contain;
     background-position-x: center;
   }
