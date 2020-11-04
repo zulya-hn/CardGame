@@ -1,5 +1,7 @@
-var path = require('path')
-var webpack = require('webpack')
+let path = require('path');
+let webpack = require('webpack');
+
+let ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: './src/main.js',
@@ -13,16 +15,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'vue-style-loader',
           'css-loader'
         ],
       },      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {
-          }
-          // other vue-loader options go here
+          extractCSS: true
         }
       },
       {
@@ -34,11 +33,15 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
+          name: '[name].[ext]',
+          publicPath: '/dist'
         }
       }
     ]
   },
+  plugins: [
+    new ExtractTextPlugin('css/style.css')
+  ],
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
@@ -54,10 +57,10 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map'
-}
+};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
