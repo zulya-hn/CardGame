@@ -2,16 +2,18 @@ let path = require('path');
 let webpack = require('webpack');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
+const ASSET_PATH = process.env.ASSET_PATH || '/dist/';
 
 module.exports = {
     entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
+        path: path.resolve(__dirname, 'dist/'),
+        publicPath: ASSET_PATH,
         filename: 'build.js'
     },
     devtool: isDev
@@ -29,7 +31,8 @@ module.exports = {
                         beautify: false
                     }
                 }
-            })
+            }),
+            new CssMinimizerPlugin(),
         ]
     },
     module: {
@@ -45,9 +48,6 @@ module.exports = {
             }, {
                 test: /\.vue$/,
                 loader: 'vue-loader',
-                options: {
-                    extractCSS: true
-                }
             },
             {
                 test: /\.js$/,
@@ -58,7 +58,8 @@ module.exports = {
                 test: /\.(png|jpg|gif|svg)$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'img/[name].[ext]'
+                    name: '[name].[ext]',
+                    outputPath: 'img',
                 }
             }
         ]
