@@ -36,16 +36,15 @@
       </div>
     </div>
   </div>
- 
-
 </template>
 
 <script>
+    import {getCards} from './helpers.js';
     
     export default {
         data() {
             return {
-                cards: ['card-jh', 'card-jc', 'card-kc', 'card-kd', 'card-kh', 'card-qs', 'card-qc', 'card-td', 'card-ks', 'card-js', 'card-qh', 'card-qd' ],
+                cards: getCards(),
                 deckOfCards: [],
                 previousCardName: null,
                 previousCardIndex: null,
@@ -180,12 +179,10 @@
   }
   
   .flip-cards {
-    
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     transform: rotateY(180deg);
-  
   }
   
   .flip-card-inner {
@@ -223,74 +220,10 @@
     backface-visibility: hidden;
   }
   
-  .flip-card-front {
-    background: url(img/reverse.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-  
   .flip-card-back {
     padding-top: 10px;
     background-size: contain;
     background-position-x: center;
-  }
-  
-  .card-jh {
-    background: url(img/card-jh.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-  
-  .card-jc {
-    background: url(img/card-jc.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-  .card-js {
-    background: url(img/card-js.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-
-  .card-qs {
-    background: url(img/card-qs.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-
-  .card-qc {
-    background: url(img/card-qc.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-
-  .card-qh {
-    background: url(img/card-qh.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-
-  .card-qd {
-    background: url(img/card-qd.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-  
-  .card-kd {
-    background: url(img/card-kd.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-
-  .card-kh {
-    background: url(img/card-kh.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-
-  .card-kc {
-    background: url(img/card-kc.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-
-  .card-ks {
-    background: url(img/card-ks.jpg) 0 -6px no-repeat;
-    background-size: cover;
-  }
-
-  .card-td {
-    background: url(img/card-td.jpg) 0 -6px no-repeat;
-    background-size: cover;
   }
   
 </style>
