@@ -40,7 +40,7 @@
 
 <script>
     import {getCards} from './helpers.js';
-    
+
     export default {
         data() {
             return {
@@ -82,19 +82,19 @@
                 }
                 else {
                     this.showCard(index);
-                    
+
                     this.cardsFrozen = true;
                     setTimeout(() => {
                         this.closeCard(index);
                         this.closePrevCard();
                         this.previousCardName = null;
                         this.previousCardIndex = null;
-                        
+
                         this.cardsFrozen = false;
                     }, 1250);
                 }
             },
-    
+
             showCard(index) {
                 this.deckOfCards[index].state = 'open-card';
             },
@@ -104,16 +104,16 @@
             closePrevCard() {
                 this.deckOfCards[this.previousCardIndex].state = 'close-card';
             },
-            
+
             createAndSortDeckOfCards() {
                 for (let cardName of this.cards) {
                     for (let i = 1; i <= 2; i++) {
                         this.deckOfCards.push({'state': 'close-card', 'name': cardName});
                     }
                 }
-        
+
                 this.sortDeckOfCards();
-                
+
             },
             sortDeckOfCards() {
                 this.deckOfCards.sort(() => Math.random() - 0.5);
@@ -140,7 +140,7 @@
                 this.createAndSortDeckOfCards();
             }
         },
- 
+
     };
 </script>
 
@@ -156,7 +156,7 @@
     opacity: 0.8;
     z-index: 100;
   }
-  
+
   .popup {
     position: fixed;
     top: calc(42vh - 98px);
@@ -172,19 +172,19 @@
     margin: 0 auto;
     width: 1300px;
   }
-  
+
   .title {
     text-align: center;
     margin-bottom: 20px;
   }
-  
+
   .flip-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     transform: rotateY(180deg);
   }
-  
+
   .flip-card-inner {
     width: 150px;
     height: 212px;
@@ -198,17 +198,18 @@
     transition: transform 0.6s;
     transform-style: preserve-3d;
   }
-  
+
   .open-card {
      pointer-events: none;
      transform: rotateY(180deg);
    }
-  
+
   .frozen {
     pointer-events: none;
   }
-  
-  .flip-card-front, .flip-card-back{
+
+  .flip-card-front,
+  .flip-card-back{
     top: 0;
     left: 0;
     width: 100%;
@@ -219,11 +220,11 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  
+
   .flip-card-back {
     padding-top: 10px;
     background-size: contain;
     background-position-x: center;
   }
-  
+
 </style>

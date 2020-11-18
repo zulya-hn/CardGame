@@ -7,14 +7,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
-const ASSET_PATH = process.env.ASSET_PATH || '/dist/';
+const ASSET_PATH = process.env.ASSET_PATH || '';
 
 module.exports = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, 'dist/'),
         publicPath: ASSET_PATH,
-        filename: 'build.js'
+        filename: 'build.js',
     },
     devtool: isDev
         ? 'eval-source-map'
@@ -28,12 +28,12 @@ module.exports = {
                     compress: true,
                     output: {
                         comments: false,
-                        beautify: false
-                    }
-                }
+                        beautify: false,
+                    },
+                },
             }),
             new CssMinimizerPlugin(),
-        ]
+        ],
     },
     module: {
         rules: [
@@ -43,7 +43,7 @@ module.exports = {
                     isDev
                         ? 'vue-style-loader'
                         : MiniCssExtractPlugin.loader,
-                    'css-loader'
+                    'css-loader',
                 ],
             }, {
                 test: /\.vue$/,
@@ -52,17 +52,18 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
-                loader: 'file-loader',
+                loader: 'url-loader',
                 options: {
-                    name: '[name].[ext]',
-                    outputPath: 'img',
-                }
-            }
-        ]
+                    limit: 8192,
+                    name: 'img/[name].[ext]',
+                    fallback: 'file-loader'
+                },
+            },
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin(),
@@ -70,14 +71,14 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.esm.js'
+            'vue$': 'vue/dist/vue.esm.js',
         },
-        extensions: ['*', '.js', '.vue', '.json']
+        extensions: ['*', '.js', '.vue', '.json'],
     },
     devServer: {
         open: true,
         historyApiFallback: true,
         noInfo: true,
-        overlay: true
+        overlay: true,
     },
 };
