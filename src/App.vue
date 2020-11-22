@@ -17,7 +17,7 @@
             <div class="progress">
                 <div class="progress-bar"
                      :style="progressWidth">
-                    {{ (openPairsCount) + ' / ' + (cards.length) }}
+                    {{ getProgressCount() }}
                 </div>
             </div>
             <div class="flip-cards"
@@ -65,6 +65,13 @@ export default {
         }
     },
     methods: {
+        getProgressCount() {
+            if(this.openPairsCount === 0) {
+                return '';
+            }
+
+            return (this.openPairsCount) + ' / ' + (this.cards.length);
+        },
         getClass(item) {
             return item.state + ' ' + item.name;
         },
