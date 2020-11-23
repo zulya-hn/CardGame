@@ -11058,6 +11058,12 @@ function getCards() {
   return ['card-jh', 'card-jc', 'card-kc', 'card-kd', 'card-kh', 'card-qs', 'card-qc', 'card-td', 'card-ks', 'card-js', 'card-qh', 'card-qd'];
 }
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/App.vue?vue&type=script&lang=js&
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -11098,9 +11104,9 @@ function getCards() {
 //
 //
 //
-;
+
 /* harmony default export */ var Appvue_type_script_lang_js_ = ({
-  data() {
+  data: function data() {
     return {
       cards: getCards(),
       deckOfCards: [],
@@ -11112,25 +11118,23 @@ function getCards() {
       timer: 0
     };
   },
-
-  created() {
+  created: function created() {
     this.createAndSortDeckOfCards();
   },
-
   computed: {
-    progressWidth() {
+    progressWidth: function progressWidth() {
       return {
         width: this.openPairsCount / this.cards.length * 100 + '%'
       };
     }
-
   },
   methods: {
-    getClass(item) {
+    getClass: function getClass(item) {
       return item.state + ' ' + item.name;
     },
+    onClickCard: function onClickCard(index, item) {
+      var _this = this;
 
-    onClickCard(index, item) {
       if (this.previousCardName === null) {
         this.showCard(index);
         this.previousCardName = item.name;
@@ -11143,69 +11147,78 @@ function getCards() {
       } else {
         this.showCard(index);
         this.cardsFrozen = true;
-        setTimeout(() => {
-          this.closeCard(index);
-          this.closePrevCard();
-          this.previousCardName = null;
-          this.previousCardIndex = null;
-          this.cardsFrozen = false;
+        setTimeout(function () {
+          _this.closeCard(index);
+
+          _this.closePrevCard();
+
+          _this.previousCardName = null;
+          _this.previousCardIndex = null;
+          _this.cardsFrozen = false;
         }, 1250);
       }
     },
-
-    showCard(index) {
+    showCard: function showCard(index) {
       this.deckOfCards[index].state = 'open-card';
     },
-
-    closeCard(index) {
+    closeCard: function closeCard(index) {
       this.deckOfCards[index].state = 'close-card';
     },
-
-    closePrevCard() {
+    closePrevCard: function closePrevCard() {
       this.deckOfCards[this.previousCardIndex].state = 'close-card';
     },
+    createAndSortDeckOfCards: function createAndSortDeckOfCards() {
+      var _iterator = _createForOfIteratorHelper(this.cards),
+          _step;
 
-    createAndSortDeckOfCards() {
-      for (let cardName of this.cards) {
-        for (let i = 1; i <= 2; i++) {
-          this.deckOfCards.push({
-            'state': 'close-card',
-            'name': cardName
-          });
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var cardName = _step.value;
+
+          for (var i = 1; i <= 2; i++) {
+            this.deckOfCards.push({
+              'state': 'close-card',
+              'name': cardName
+            });
+          }
         }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
       }
 
       this.sortDeckOfCards();
     },
-
-    sortDeckOfCards() {
-      this.deckOfCards.sort(() => Math.random() - 0.5);
+    sortDeckOfCards: function sortDeckOfCards() {
+      this.deckOfCards.sort(function () {
+        return Math.random() - 0.5;
+      });
     },
-
-    startTimerTick() {
+    startTimerTick: function startTimerTick() {
       if (!this.timerAlreadyStart) {
         this.timerAlreadyStart = true;
         this.timerTick();
       }
     },
+    timerTick: function timerTick() {
+      var _this2 = this;
 
-    timerTick() {
       if (this.openPairsCount < 12) {
-        setTimeout(() => {
-          this.timer++;
-          this.timerTick();
+        setTimeout(function () {
+          _this2.timer++;
+
+          _this2.timerTick();
         }, 1000);
       }
     },
-
-    playAgain() {
+    playAgain: function playAgain() {
       this.timerAlreadyStart = false;
       this.timer = 0;
       this.openPairsCount = 0;
       this.deckOfCards = [];
       this.createAndSortDeckOfCards();
     }
-
   }
 });
 // CONCATENATED MODULE: ./src/App.vue?vue&type=script&lang=js&
@@ -11339,8 +11352,10 @@ var component = normalizeComponent(
 
 new vue_esm({
   el: '#app',
-  render: h => h(App)
+  render: function render(h) {
+    return h(App);
+  }
 });
 /******/ })()
 ;
-//# sourceMappingURL=build.js.map
+//# sourceMappingURL=main.bundle.js.map
