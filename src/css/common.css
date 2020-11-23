@@ -1,8 +1,3 @@
-.flip-card-front {
-  background: url('../img/reverse.jpg') 0 -6px no-repeat;
-  background-size: cover;
-}
-
 .card-jh {
   background: url('../img/card-jh.jpg') 0 -6px no-repeat;
   background-size: cover;
