@@ -11046,12 +11046,12 @@ Vue.compile = compileToFunctions;
 
 /* harmony default export */ var vue_esm = (Vue);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/App.vue?vue&type=template&id=3ea82b9a&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.openPairsCount === 12)?_c('div',[_c('div',{staticClass:"bg"}),_vm._v(" "),_c('div',{staticClass:"popup"},[_c('h2',[_vm._v("Congratulations! "),_c('br'),_vm._v(" Your time is "+_vm._s(parseInt(_vm.timer / 60))+":"+_vm._s(_vm.timer % 60))]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",on:{"click":_vm.playAgain}},[_vm._v("\n        Play again!\n      ")])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"wrapper"},[_c('h1',{staticClass:"title"},[_vm._v("\n      The Pairs\n    ")]),_vm._v(" "),_c('div',{staticClass:"progress"},[_c('div',{staticClass:"progress-bar",style:(_vm.progressWidth)},[_vm._v("\n        "+_vm._s((_vm.openPairsCount) + ' / ' + (_vm.cards.length))+"\n      ")])]),_vm._v(" "),_c('div',{staticClass:"flip-cards",class:_vm.cardsFrozen ? 'frozen' : '',on:{"click":function($event){return _vm.startTimerTick()}}},_vm._l((_vm.deckOfCards),function(item,index){return _c('div',{staticClass:"flip-card-inner",class:_vm.getClass(item),on:{"click":function($event){return _vm.onClickCard(index, item)}}},[_c('div',{staticClass:"flip-card-front"}),_vm._v(" "),_c('div',{staticClass:"flip-card-back"})])}),0)])])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/App.vue?vue&type=template&id=4b8bc730&scoped=true&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(_vm.openPairsCount === 12)?_c('div',[_c('div',{staticClass:"bg"}),_vm._v(" "),_c('div',{staticClass:"popup"},[_c('h2',[_vm._v("Congratulations! "),_c('br'),_vm._v(" Your time is "+_vm._s(parseInt(_vm.timer / 60))+":"+_vm._s(_vm.timer % 60))]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",on:{"click":_vm.playAgain}},[_vm._v("\n                Play again!\n            ")])])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"wrapper"},[_c('h1',{staticClass:"title"},[_vm._v("\n            The Pairs\n        ")]),_vm._v(" "),_c('div',{staticClass:"progress"},[_c('div',{staticClass:"progress-bar",style:(_vm.progressWidth)},[_vm._v("\n                "+_vm._s(_vm.getProgressCount())+"\n            ")])]),_vm._v(" "),_c('div',{staticClass:"flip-cards",class:_vm.cardsFrozen ? 'frozen' : '',on:{"click":function($event){return _vm.startTimerTick()}}},_vm._l((_vm.deckOfCards),function(item,index){return _c('div',{staticClass:"flip-card-inner",class:_vm.getClass(item),on:{"click":function($event){return _vm.onClickCard(index, item)}}},[_c('div',{staticClass:"flip-card-front"}),_vm._v(" "),_c('div',{staticClass:"flip-card-back"})])}),0)])])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=3ea82b9a&scoped=true&
+// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=4b8bc730&scoped=true&
 
 // CONCATENATED MODULE: ./src/helpers.js
 function getCards() {
@@ -11129,8 +11129,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   methods: {
+    getProgressCount: function getProgressCount() {
+      if (this.openPairsCount === 0) {
+        return '';
+      }
+
+      return this.openPairsCount + ' / ' + this.cards.length;
+    },
     getClass: function getClass(item) {
-      return item.state + ' ' + item.name;
+      if (item.state === 'open-card') {
+        return item.state + ' ' + item.name;
+      }
+
+      return item.state;
     },
     onClickCard: function onClickCard(index, item) {
       var _this = this;
@@ -11223,7 +11234,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 });
 // CONCATENATED MODULE: ./src/App.vue?vue&type=script&lang=js&
 ; /* harmony default export */ var src_Appvue_type_script_lang_js_ = (Appvue_type_script_lang_js_); 
-// CONCATENATED MODULE: ./src/App.vue?vue&type=style&index=0&id=3ea82b9a&scoped=true&lang=css&
+// CONCATENATED MODULE: ./src/App.vue?vue&type=style&index=0&id=4b8bc730&scoped=true&lang=css&
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -11340,7 +11351,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "3ea82b9a",
+  "4b8bc730",
   null
   
 )

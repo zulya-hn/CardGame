@@ -73,7 +73,10 @@ export default {
             return (this.openPairsCount) + ' / ' + (this.cards.length);
         },
         getClass(item) {
-            return item.state + ' ' + item.name;
+            if (item.state === 'open-card') {
+                return item.state + ' ' + item.name;
+            }
+            return item.state;
         },
         onClickCard(index, item) {
             if (this.previousCardName === null) {
@@ -237,6 +240,4 @@ export default {
     background: url('img/reverse.jpg') 0 -6px no-repeat;
     background-size: cover;
 }
-
-
 </style>
