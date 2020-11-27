@@ -8,13 +8,12 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
-const ASSET_PATH = process.env.ASSET_PATH || '';
 
 module.exports = {
     entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname, './dist/'),
-        publicPath: ASSET_PATH,
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '',
         filename: '[name].bundle.js',
         assetModuleFilename: 'img/[name][ext][query]'
     },
@@ -87,7 +86,7 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
-        contentBase: path.resolve(__dirname, './dist'),
+        contentBase: './',
         open: true,
         compress: true,
         overlay: true,
