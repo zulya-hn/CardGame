@@ -1,12 +1,24 @@
-.DS_Store
-node_modules
-npm-debug.log
-yarn-error.log
-debug.log
-
-# Editor directories and files
+# Default
+.gulp
 .idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+.vscode
+
+# Node
+node_modules
+
+# Dist & tests
+test
+dist
+
+# Logs:
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Special
+Thumbs.db
+Desktop.ini
+.DS_Store*
+ehthumbs.db
+Icon?

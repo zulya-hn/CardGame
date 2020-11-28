@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import {getCards} from './helpers.js';
+import {getCards} from '../helpers.js';
 
 export default {
     data() {
@@ -151,93 +151,3 @@ export default {
 
 };
 </script>
-
-
-<style scoped>
-.bg {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #000;
-    opacity: 0.8;
-    z-index: 100;
-}
-
-.popup {
-    position: fixed;
-    top: calc(42vh - 98px);
-    left: 35%;
-    right: 35%;
-    padding: 40px 80px;
-    background-color: #B4AD9D;
-    text-align: center;
-    z-index: 200;
-    border-radius: 8px;
-}
-
-.wrapper {
-    margin: 0 auto;
-    width: 1300px;
-}
-
-.title {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.flip-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    transform: rotateY(180deg);
-}
-
-.flip-card-inner {
-    width: 150px;
-    height: 212px;
-    background-color: #FFF;
-    margin-bottom: 12px;
-    cursor: pointer;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, .75);
-    border-radius: 8px;
-    position: relative;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.open-card {
-    pointer-events: none;
-    transform: rotateY(180deg);
-}
-
-.frozen {
-    pointer-events: none;
-}
-
-.flip-card-front,
-.flip-card-back {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    background-repeat: no-repeat;
-    position: absolute;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-.flip-card-back {
-    padding-top: 10px;
-    background-size: contain;
-    background-position-x: center;
-}
-
-.flip-card-front {
-    background: url('img/reverse.jpg') 0 -6px no-repeat;
-    background-size: cover;
-}
-</style>
