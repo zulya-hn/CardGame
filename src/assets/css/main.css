@@ -36,6 +36,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   transform: rotateY(180deg);
+  margin-top: 35px;
 }
 
 .flip-card-inner {
@@ -74,14 +75,15 @@
 }
 
 .flip-card-back {
-  padding-top: 10px;
-  background-size: contain;
-  background-position-x: center;
+  background: url('../img/reverse.jpg') 0 -6px no-repeat;
+  background-size: cover;
 }
 
 .flip-card-front {
-  background: url('../img/reverse.jpg') 0 -6px no-repeat;
-  background-size: cover;
+
+  padding-top: 10px;
+  background-size: contain;
+  background-position-x: center;
 }
 
 .card-jh {
