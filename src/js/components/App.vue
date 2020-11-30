@@ -73,10 +73,7 @@ export default {
             return (this.openPairsCount) + ' / ' + (this.cards.length);
         },
         getClass(item) {
-            if (item.state === 'open-card') {
-                return item.state + ' ' + item.name;
-            }
-            return item.state;
+            return item.state + ' ' + item.name;
         },
         onClickCard(index, item) {
             if (this.previousCardName === null) {
