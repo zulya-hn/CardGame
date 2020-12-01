@@ -24,11 +24,13 @@
                  :class="cardsFrozen ? 'frozen' : '' "
                  @click="startTimerTick()">
                 <div v-for="(item, index) in deckOfCards"
-                     :class="getClass(item)"
+                     :class="item.state"
                      class="flip-card-inner"
                      @click="onClickCard(index, item)"
                 >
-                    <div class="flip-card-front">
+                    <div class="flip-card-front"
+                         :class="item.name"
+                    >
                     </div>
                     <div class="flip-card-back">
                     </div>
@@ -71,9 +73,6 @@ export default {
             }
 
             return (this.openPairsCount) + ' / ' + (this.cards.length);
-        },
-        getClass(item) {
-            return item.state + ' ' + item.name;
         },
         onClickCard(index, item) {
             if (this.previousCardName === null) {
